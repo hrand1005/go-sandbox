@@ -5,7 +5,7 @@ import (
 )
 
 type Result interface {
-	Value() (V any)
+	Value() any
 	Error() error
 }
 
