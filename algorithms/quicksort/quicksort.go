@@ -1,12 +1,14 @@
 package main
 
-type number interface {
+type sortable interface {
 	uint8 | uint16 | uint32 | uint64 |
-		int | int8 | int16 | int32 | int64
+		int | int8 | int16 | int32 | int64 |
+		float32 | float64 |
+		string
 }
 
-// quicksort can sort a slice of numbers
-func quicksort[T number](slice []T, low, high T) {
+// quicksort can sort a slice of sortable elements
+func quicksort[T sortable](slice []T, low, high int) {
 	if low >= high {
 		return
 	}
@@ -18,7 +20,7 @@ func quicksort[T number](slice []T, low, high T) {
 
 // partition is responsible for ensuring some pivot index is
 // put in its final position. It returns that index
-func partition[T number](slice []T, low, high T) T {
+func partition[T sortable](slice []T, low, high int) int {
 	pivot := slice[high]
 	i := low
 
