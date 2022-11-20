@@ -14,6 +14,7 @@ func quicksort[T sortable](slice []T, low, high int) {
 	}
 
 	p := partition(slice, low, high)
+	// p := partition2(slice, low, high)
 	quicksort(slice, low, p-1)
 	quicksort(slice, p+1, high)
 }
@@ -34,4 +35,31 @@ func partition[T sortable](slice []T, low, high int) int {
 	slice[high], slice[i] = slice[i], slice[high]
 
 	return i
+}
+
+// partition2 is an alternative partitioning scheme wherein
+// variables are compared to the pivot from both sides of the slice
+func partition2[T sortable](slice []T, low, high int) int {
+	pivot := slice[low]
+
+	i := low
+	j := high
+
+	for i < j {
+		for slice[i] <= pivot && i < high {
+			i++
+		}
+
+		for slice[j] > pivot && j > low {
+			j--
+		}
+
+		if i < j {
+			slice[i], slice[j] = slice[j], slice[i]
+		}
+	}
+
+	slice[j], slice[low] = slice[low], slice[j]
+
+	return j
 }
