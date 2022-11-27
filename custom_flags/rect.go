@@ -58,5 +58,3 @@ func RectFlag(name string, value Rect, usage string) *Rect {
 	flag.CommandLine.Var(&r, name, usage)
 	return &r
 }
-
-
