@@ -5,45 +5,40 @@ import (
 	"strings"
 )
 
-type LinkedList[T any] struct {
-	Head *Node[T]
-	Tail *Node[T]
-}
-
 type Node[T any] struct {
 	Val  T
 	Next *Node[T]
-	Prev *Node[T]
 }
 
-func FromSlice[T any](slice []T) *LinkedList[T] {
-	head := &Node[T]{
-		Val: slice[0],
-	}
+func FromSlice[T any](slice []T) *Node[T] {
+	dummy := &Node[T]{}
+	cur := dummy
 
-	prev := head
-
-	for i := 1; i < len(slice); i++ {
-		curr := &Node[T]{
-			Val:  slice[i],
-			Prev: prev,
+	for i := 0; i < len(slice); i++ {
+		cur.Next = &Node[T]{
+			Val: slice[i],
 		}
-
-		prev.Next = curr
-
-		prev = curr
+		cur = cur.Next
 	}
 
-	return &LinkedList[T]{
-		Head: head,
-		Tail: prev,
-	}
+	return dummy.Next
 }
 
-func (ll LinkedList[T]) String() string {
+func (head *Node[T]) ToSlice() []T {
+	res := []T{}
+
+	cur := head
+	for cur != nil {
+		res = append(res, cur.Val)
+	}
+
+	return res
+}
+
+func (head *Node[T]) ListString() string {
 	var b strings.Builder
 
-	cur := ll.Head
+	cur := head
 	for cur != nil {
 		fmt.Fprintf(&b, "%+v\n", cur)
 		cur = cur.Next
