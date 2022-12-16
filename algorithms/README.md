@@ -2,11 +2,11 @@
 
 To master:
 
-- [ ] Binary Search
+- [x] Binary Search
 - [ ] BFS
 - [ ] DFS
-- [ ] Quick sort
-- [ ] Merge sort
+- [x] Quick sort
+- [x] Merge sort
 - [ ] Kruskal's
 - [ ] Dijkstra's
 - [ ] Floyd-Warshall's
@@ -14,3 +14,9 @@ To master:
 - [ ] Topological Sort
 
 etc...
+
+Others:
+
+- KMP
+- Rabin Karp
+- Boyer Moore (or something like that?)
