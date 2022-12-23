@@ -1,58 +1,66 @@
 package main
 
 import (
-  "fmt"
-  "sort"
-  "math/rand"
+	"fmt"
+	"math/rand"
+	"sort"
 )
 
 var adjacencyMatrix = [][]int{
-  {0, 1, 0, 0},
-  {1, 0, 1, 1},
-  {0, 1, 0, 1},
-  {0, 1, 1, 0},
+	{0, 1, 0, 0},
+	{1, 0, 1, 1},
+	{0, 1, 0, 1},
+	{0, 1, 1, 0},
 }
 
-
 func main() {
-  printGraphInfo(adjacencyMatrix)
+	// printGraphInfo(adjacencyMatrix)
+	rootNode := BinaryTreeFromNestedSlices([][]int{
+		{1},
+		{2, 3},
+		{4, 5, 6, 7},
+	})
+
+	dfs(rootNode)
+
+	// fmt.Printf("Root Node Val:\n%+v\n", rootNode.Val)
 }
 
 func printGraphInfo(graph [][]int) {
-  topRow, matrix, sep, vertices := "   ", "", "-", "" 
-  edges := map[string]int{}
+	topRow, matrix, sep, vertices := "   ", "", "-", ""
+	edges := map[string]int{}
 
-  for i, v := range graph {
-    topRow += fmt.Sprintf("%v ", i)
-    matrix += fmt.Sprintf("%v %+v\n", i, v)
-    sep += sep
-    vertices += fmt.Sprintf("(%v) ", i)
-    
-    for j := range v {
-      if graph[i][j] == 1 {
-        e := []int{i, j}
-        sort.Ints(e)
-        key := fmt.Sprintf("(%v, %v)", e[0], e[1])
-        edges[key]++
-      }
-    }
-  }
+	for i, v := range graph {
+		topRow += fmt.Sprintf("%v ", i)
+		matrix += fmt.Sprintf("%v %+v\n", i, v)
+		sep += sep
+		vertices += fmt.Sprintf("(%v) ", i)
 
-  fmt.Printf("Commencing DFS Demo...\n\n%v\n\n", sep)
-  fmt.Println("Here is a graph,\nrepresented by an\nadjacency matrix:\n")
-  fmt.Printf("%v\n%v\n", topRow, matrix)
-  fmt.Printf("There are\n%v vertices:\n\n%s\n\n", len(graph), vertices)
-  fmt.Printf("There are\n%v edges:\n\n", len(edges))
+		for j := range v {
+			if graph[i][j] == 1 {
+				e := []int{i, j}
+				sort.Ints(e)
+				key := fmt.Sprintf("(%v, %v)", e[0], e[1])
+				edges[key]++
+			}
+		}
+	}
 
-  for k, _ := range edges {
-    fmt.Printf("%v ", k)
-  }
+	fmt.Printf("Commencing DFS Demo...\n\n%v\n\n", sep)
+	fmt.Println("Here is a graph,\nrepresented by an\nadjacency matrix:\n")
+	fmt.Printf("%v\n%v\n", topRow, matrix)
+	fmt.Printf("There are\n%v vertices:\n\n%s\n\n", len(graph), vertices)
+	fmt.Printf("There are\n%v edges:\n\n", len(edges))
 
-  fmt.Println("\n")
-  fmt.Printf("Let's use DFS\nto traverse\neach vertex\nexactly once.\n\n")
+	for k, _ := range edges {
+		fmt.Printf("%v ", k)
+	}
 
-  start := rand.Intn(len(graph))
+	fmt.Println("\n")
+	fmt.Printf("Let's use DFS\nto traverse\neach vertex\nexactly once.\n\n")
 
-  fmt.Printf("Using random\nstart vertex:\n\n(%v)\n\n", start)
-  fmt.Println("Traversing...")
+	start := rand.Intn(len(graph))
+
+	fmt.Printf("Using random\nstart vertex:\n\n(%v)\n\n", start)
+	fmt.Println("Traversing...")
 }
