@@ -39,14 +39,7 @@ func fibN(n int) int {
 	if n <= 1 {
 		return 1
 	}
-	return fibRecurse(n-2, 1, 1)
-}
-
-func fibRecurse(idx, oneBefore, twoBefore int) int {
-	if idx == 0 {
-		return oneBefore + twoBefore
-	}
-	return fibRecurse(idx-1, oneBefore+twoBefore, oneBefore)
+	return fibN(n-2) + fibN(n-1)
 }
 
 // printStage reads integers from 'in' and prints them to stdout.
