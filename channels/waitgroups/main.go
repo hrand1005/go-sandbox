@@ -23,14 +23,20 @@ func main() {
 }
 
 func synchronousSum(allSlices [][]int) {
-	sum := 0
+	total := 0
 	for _, s := range allSlices {
-		for _, v := range s {
-			sum += v
-		}
+		total += sumSlice(s)
 	}
 
-	fmt.Println(sum)
+	fmt.Println(total)
+}
+
+func sumSlice(s []int) int {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	return sum
 }
 
 func concurrentSum(allSlices [][]int) {
@@ -46,13 +52,13 @@ func concurrentSum(allSlices [][]int) {
 	fmt.Println(<-out)
 }
 
-// buildSampleSlices creates 10 slices, each with 100 elements. The sum of all
+// buildSampleSlices creates 1000 slices, each with 1000 elements. The sum of all
 // elements in all slices is _
 func buildSampleSlices() [][]int {
-	full := make([][]int, 10)
-	for i := 0; i < 10; i++ {
-		inner := make([]int, 100)
-		for j := 0; j < 100; j++ {
+	full := make([][]int, 1000)
+	for i := 0; i < 1000; i++ {
+		inner := make([]int, 1000)
+		for j := 0; j < 1000; j++ {
 			inner[j] = j
 		}
 		full[i] = inner
