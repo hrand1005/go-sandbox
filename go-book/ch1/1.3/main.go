@@ -17,7 +17,7 @@ func main() {
 	concatTimer("concatArgs3", concatArgs3, args)
 }
 
-// concatTimer prints the execution time and result of the provided 
+// concatTimer prints the execution time and result of the provided
 // concatenation function. Expects name, function, and function args.
 func concatTimer(name string, f func([]string) string, fargs []string) {
 	start := time.Now()
@@ -27,9 +27,9 @@ func concatTimer(name string, f func([]string) string, fargs []string) {
 	fmt.Printf("%s\nresult: %s\nexecution time: %v\n", name, s, duration)
 }
 
-// concatArgs1 builds a string form the provided arguments through addition. 
-// I decided to return a string because I don't think printing to stdout is 
-// particularly useful during profiling. 
+// concatArgs1 builds a string form the provided arguments through addition.
+// I decided to return a string because I don't think printing to stdout is
+// particularly useful during profiling.
 func concatArgs1(args []string) string {
 	s, sep := "", ""
 	for _, a := range args {
