@@ -1,0 +1,3 @@
+https://amazon.com	fetched 6591 bytes in 0.26s
+https://bing.com	fetched 43616 bytes in 0.34s
+https://google.com	fetched 15500 bytes in 0.44s
