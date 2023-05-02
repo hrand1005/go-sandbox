@@ -22,11 +22,6 @@ var (
 	}
 )
 
-const (
-	blackIndex = 0
-	greenIndex = 1
-)
-
 func main() {
 	lissajous(os.Stdout)
 }
